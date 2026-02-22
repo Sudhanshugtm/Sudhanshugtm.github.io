@@ -1,0 +1,144 @@
+---
+layout: default
+title: Resume — Sudhanshu Gautam
+description: "Lead UX Designer with 10+ years spanning software engineering and design. Engineering background, CIID-trained, healthcare impact at Noora Health, global reach at Wikimedia Foundation."
+permalink: /resume/
+---
+
+<div class="single-column" style="padding-top: 80px;">
+  <main class="resume-content">
+    <div style="display:flex; justify-content:flex-end; margin-bottom: var(--space-md);">
+      <button class="secondary-cta" onclick="window.print()">Print / Save PDF</button>
+    </div>
+
+    <section class="hero-statement">
+      <div class="statement-box">
+        <h1>{{ site.data.resume.name | default: 'Your Name' | upcase }}</h1>
+        <p class="title">{{ site.data.resume.title | default: 'Lead UX Designer' }}</p>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <div class="contact-details">
+        <div class="contact-item">
+          <span class="label">EMAIL</span>
+          <a href="mailto:{{ site.data.resume.email }}">{{ site.data.resume.email }}</a>
+        </div>
+        <div class="contact-item">
+          <span class="label">LOCATION</span>
+          <span>{{ site.data.resume.location }}</span>
+        </div>
+        {% if site.data.resume.linkedin %}
+        <div class="contact-item">
+          <span class="label">LINKEDIN</span>
+          <a href="{{ site.data.resume.linkedin }}" target="_blank">{{ site.data.resume.linkedin | replace: 'https://', '' }}</a>
+        </div>
+        {% endif %}
+        {% if site.data.resume.github %}
+        <div class="contact-item">
+          <span class="label">GITHUB</span>
+          <a href="{{ site.data.resume.github }}" target="_blank">{{ site.data.resume.github | replace: 'https://', '' }}</a>
+        </div>
+        {% endif %}
+      </div>
+    </section>
+    {% if site.data.resume.summary %}
+    <section class="hero-statement summary-section">
+      <h2>SUMMARY</h2>
+      <p class="mission">{{ site.data.resume.summary }}</p>
+    </section>
+    {% endif %}
+
+    {% if site.data.resume.experience %}
+    <section class="experience-section">
+      <div class="section-header">
+        <h2>EXPERIENCE</h2>
+        <div class="accent-line"></div>
+      </div>
+
+      {% for job in site.data.resume.experience %}
+      <div class="job-entry">
+        <div class="job-header">
+          <div class="company-role">
+            <h3>{{ job.company }}</h3>
+            <p class="role">{{ job.role }}</p>
+          </div>
+          <div class="job-meta">
+            <span class="timeframe">{{ job.timeframe }}</span>
+            <span class="location">{{ job.location }}</span>
+          </div>
+        </div>
+        {% if job.summary %}
+        <div class="job-summary">
+          <p>{{ job.summary }}</p>
+        </div>
+        {% endif %}
+        {% if job.achievements %}
+        <div class="achievements">
+          {% for a in job.achievements %}
+          <div class="achievement-item">
+            <div class="achievement-content">
+              <p>{{ a }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if site.data.resume.education %}
+    <section class="experience-section">
+      <div class="section-header">
+        <h2>EDUCATION</h2>
+        <div class="accent-line"></div>
+      </div>
+      {% for edu in site.data.resume.education %}
+      <div class="job-entry">
+        <div class="job-header">
+          <div class="company-role">
+            <h3>{{ edu.school }}</h3>
+            <p class="role">{{ edu.degree }}</p>
+          </div>
+          <div class="job-meta">
+            <span class="timeframe">{{ edu.timeframe }}</span>
+          </div>
+        </div>
+        {% if edu.notes %}
+        <div class="job-summary">
+          <p>{{ edu.notes }}</p>
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </section>
+     {% endif %}
+
+     {% if site.data.resume.skills %}
+     <section class="skills-section">
+       <h3>CORE SKILLS</h3>
+       <div class="skill-groups">
+         {% for group in site.data.resume.skills %}
+           <div class="skill-group">
+             <h4>{{ group.label }}</h4>
+             <p>{{ group.items | join: ', ' }}</p>
+           </div>
+         {% endfor %}
+       </div>
+     </section>
+     {% endif %}
+
+     {% if site.data.resume.tools %}
+     <section class="skills-section">
+       <h3>TOOLING</h3>
+       <div class="skill-groups">
+         <div class="skill-group">
+           <p>{{ site.data.resume.tools | join: ', ' }}</p>
+         </div>
+       </div>
+     </section>
+     {% endif %}
+  </main>
+</div>

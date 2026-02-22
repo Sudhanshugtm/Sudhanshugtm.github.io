@@ -1,0 +1,107 @@
+# Wikimedia Foundation — authentic, concise case studies
+
+- id: "kaios"
+  title: "Wikipedia for KaiOS"
+  org: "Wikimedia Foundation — Inuka"
+  role: "Lead UX Designer"
+  timeframe: "2020 — 2021"
+  problem: |
+    Help first‑time internet users on keypad phones access Wikipedia. Design
+    for non‑touch devices with strict device constraints (2.8" screens, 256MB RAM) and low bandwidth in emerging markets.
+  outcome: |
+    Delivered the Wikipedia KaiOS app end‑to‑end. Clear, keypad‑first
+    navigation, readable layouts, and simple flows tuned for small screens. Launched globally on KaiStore (100+ countries).
+  impact:
+    - "1.6M+ downloads across India and global markets"
+    - "Still active in 2025 with latest update (v1.8.1.0, Sept 2024)"
+    - "Reached 100M+ KaiOS users with access to 50M+ Wikipedia articles in 100+ languages"
+    - "Established patterns for non‑touch navigation and low‑bandwidth design"
+  responsibilities:
+    - Interaction design for keypad flows and IA
+    - Prototypes and usability tests (remote recruitment in India)
+    - UI patterns, states, and handoff with engineering
+    - Research on KaiOS user behaviors and reading habits
+  links:
+    - label: "Try on KaiOS"
+      url: "https://www.kaiostech.com/store/apps/?bundle_id=org.wikimedia.wikipedia"
+    - label: "Technical docs"
+      url: "https://www.mediawiki.org/wiki/Wikipedia_for_KaiOS"
+    - label: "Source code"
+      url: "https://github.com/wikimedia/wikipedia-kaios"
+
+- id: "wikistories"
+  title: "Wikistories (Indonesia pilot)"
+  org: "Wikimedia Foundation — Inuka"
+  role: "Product/Interaction Designer"
+  timeframe: "2021 — 2022"
+  problem: |
+    Explore a story‑style format for Wikimedia content to help mobile readers
+    browse visually and quickly, in collaboration with the Indonesian community and GLAM institutions.
+  outcome: |
+    Built and launched pilot on Indonesian Wikipedia. Media‑first templates, simple editing, and
+    localized UI. Co‑designed through on-the-ground outreach in 4 Indonesian cities (Medan, Yogyakarta, Makassar, Banjarmasin).
+  impact:
+    - "2,714+ stories created (exceeding 100-story goal)"
+    - "89 returning editors + 47 new editors joined"
+    - "Collaboration with Wikimedia Indonesia and GLAM institutions across 4 cities"
+    - "Still active as beta feature in 2025, maintained by Language & Product Localization team"
+  responsibilities:
+    - Prototyping, flow design, and content guidelines for story format
+    - Community training sessions and hands-on workshops
+    - Usability feedback synthesis and iteration
+    - Collaboration with GLAM partners and professional associations
+  links:
+    - label: "Try Wikistories"
+      url: "https://id.wikipedia.org/wiki/Story:Mengenal_Museum_Fatahillah_Jakarta"
+    - label: "Project documentation"
+      url: "https://www.mediawiki.org/wiki/Wikistories_for_Wikipedia"
+    - label: "Pilot report"
+      url: "https://meta.wikimedia.org/wiki/Wikistories_pilot_in_Indonesia/Final"
+
+- id: "article-summarization"
+  title: "Summarizing long articles for newcomers (exploration)"
+  org: "Wikimedia Foundation — Inuka"
+  role: "Interaction Designer"
+  timeframe: "2020 — 2021"
+  problem: |
+    Long articles can overwhelm first‑time readers on small screens and low
+    bandwidth. Explore ways to surface short, reliable summaries without compromising trust or accuracy.
+  outcome: |
+    Prototyped summarization concepts and variants; tested comprehension and
+    usefulness with target users. Captured trade‑offs around accuracy, tone, and trust for future AI-assisted features.
+  impact:
+    - "Documented patterns and constraints for summarization in knowledge products"
+    - "Shared research artifacts with Language team for future work"
+    - "Informed early thinking on AI-generated content in Wikimedia products"
+  responsibilities:
+    - Problem framing and hypothesis mapping
+    - Lo-fi prototyping and quick comprehension tests
+    - Synthesis and pattern documentation
+    - Cross-team collaboration and knowledge sharing
+  links: []
+
+- id: "content-translation"
+  title: "Content Translation — experience improvements"
+  org: "Wikimedia Foundation — Language"
+  role: "Lead UX Designer"
+  timeframe: "2022 — Present"
+  problem: |
+    Make it easier to translate articles between languages by reducing friction
+    in setup, clarifying states, and supporting accessibility and reliability for volunteer translators.
+  outcome: |
+    Iterative UX improvements: clearer flows, better guidance and copy, and
+    design system updates (Codex) aligned with translator needs. Ongoing collaboration with Language Engineering team.
+  impact:
+    - "Improved clarity in key translation flows; fewer interruptions and clearer error states"
+    - "Better alignment with Wikimedia Codex design system and WCAG AA accessibility standards"
+    - "Enhanced guidance for new translators entering the workflow"
+  responsibilities:
+    - User research with multilingual volunteer translators
+    - Flow mapping, prototypes, and usability validation
+    - Design system contributions (Codex components)
+    - Implementation support and eng collaboration
+  links:
+    - label: "Try Content Translation"
+      url: "https://en.wikipedia.org/wiki/Special:ContentTranslation"
+    - label: "Tool documentation"
+      url: "https://www.mediawiki.org/wiki/Content_translation"

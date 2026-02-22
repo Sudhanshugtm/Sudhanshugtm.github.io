@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudhanshu Gautam - Product Builder & AI Strategist</title>
+    <meta name="description" content="Swiss-designed portfolio of Sudhanshu Gautam - Product Builder specializing in AI-assisted development at Wikimedia Foundation.">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' font-family='Arial'%3ESG%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="/">SG</a>
+            
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <nav class="nav" id="mobile-nav">
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a href="/writing/">Writing</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="swiss-grid" style="padding-top: 80px;">
+        <!-- Left Column: Resume Information -->
+        <aside class="resume-column">
+            <div class="contact-card">
+                <div class="name-title">
+                    <h1>SUDHANSHU<br>GAUTAM</h1>
+                    <p class="title">Product Builder<br>AI Strategist</p>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="label">EMAIL</span>
+                        <a href="mailto:sudhanshu.gautam@gmail.com">sudhanshu.gautam@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="label">LOCATION</span>
+                        <span>Remote / Global</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="label">LINKEDIN</span>
+                        <a href="https://linkedin.com/in/sudhanshugtm" target="_blank">linkedin.com/in/sudhanshugtm</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="label">GITHUB</span>
+                        <a href="https://github.com/Sudhanshugtm" target="_blank">github.com/Sudhanshugtm</a>
+                    </div>
+                </div>
+
+                <div class="skills-section">
+                    <h3>CORE COMPETENCIES</h3>
+                    <div class="skill-tags">
+                        <span>Product Strategy</span>
+                        <span>AI Integration</span>
+                        <span>UX Design</span>
+                        <span>TypeScript</span>
+                        <span>React</span>
+                        <span>Node.js</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right Column: Portfolio Content -->
+        <main class="portfolio-column">
+            <nav class="top-nav">
+                <a href="#experience" class="nav-link">EXPERIENCE</a>
+                <a href="#work" class="nav-link">PROJECTS</a>
+                <a href="#process" class="nav-link">PROCESS</a>
+                <a href="/writing/" class="nav-link">WRITING</a>
+            </nav>
+
+            <section class="hero-statement" id="about">
+                <div class="statement-box">
+                    <h2>AI-ASSISTED<br>PRODUCT<br>BUILDER</h2>
+                    <p class="mission">Transforming ambiguous ideas into precise digital products through strategic AI collaboration and human-centered design.</p>
+                </div>
+            </section>
+
+            <section class="experience-section" id="experience">
+                <div class="section-header">
+                    <h2>PROFESSIONAL EXPERIENCE</h2>
+                    <div class="accent-line"></div>
+                </div>
+
+                <div class="job-entry">
+                    <div class="job-header">
+                        <div class="company-role">
+                            <h3>WIKIMEDIA FOUNDATION</h3>
+                            <p class="role">Product Builder • Software Engineer</p>
+                        </div>
+                        <div class="period">2020—PRESENT</div>
+                    </div>
+                    
+                    <div class="achievements">
+                        <div class="achievement-item">
+                            <span class="year">2023—Present</span>
+                            <div class="achievement-content">
+                                <h4>AI-Assisted Development Leadership</h4>
+                                <p>Pioneered AI-first development workflows, reducing prototype-to-production time by 40% while maintaining code quality standards.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <span class="year">2021—2023</span>
+                            <div class="achievement-content">
+                                <h4>Commons & Content Tools</h4>
+                                <p>Built multimedia handling systems serving 100M+ users. Designed collaborative editing interfaces for global Wikipedia communities.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <span class="year">2020—2021</span>
+                            <div class="achievement-content">
+                                <h4>MediaWiki Core Platform</h4>
+                                <p>Developed foundational content management features. Optimized user experience workflows for mission-critical wiki infrastructure.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="projects-section" id="work">
+                <div class="section-header">
+                    <h2>FEATURED PROJECTS</h2>
+                    <div class="accent-line"></div>
+                </div>
+
+                <div class="project-grid">
+                    <article class="project-card">
+                        <div class="project-header">
+                            <div class="project-number">01</div>
+                            <div class="project-category">DESIGN TOOL</div>
+                        </div>
+                        <h3>Figma i18n Preview Plugin</h3>
+                        <p>Real-time localization checks inside Figma. Prevents layout breaks before handoff through automated truncation detection.</p>
+                        <div class="project-details">
+                            <span class="tech">Figma API</span>
+                            <span class="tech">TypeScript</span>
+                            <span class="tech">Claude AI</span>
+                        </div>
+                        <a href="https://github.com/Sudhanshugtm/figma-i18n-preview" class="project-link" target="_blank">VIEW CODE →</a>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-header">
+                            <div class="project-number">02</div>
+                            <div class="project-category">WEB APPLICATION</div>
+                        </div>
+                        <h3>Wikipedia Article Creator</h3>
+                        <p>Guided publishing interface for newcomers. Reduces Wikipedia editor friction through step-by-step Wikidata integration.</p>
+                        <div class="project-details">
+                            <span class="tech">React</span>
+                            <span class="tech">Wikidata API</span>
+                            <span class="tech">Wikimedia Codex</span>
+                        </div>
+                        <a href="https://github.com/Sudhanshugtm/article-creation" class="project-link" target="_blank">VIEW CODE →</a>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-header">
+                            <div class="project-number">03</div>
+                            <div class="project-category">PRODUCTIVITY APP</div>
+                        </div>
+                        <h3>Weekly Goals Tracker</h3>
+                        <p>Mindful planning tool inspired by Things. Built to understand the anatomy of calm, intentional product design.</p>
+                        <div class="project-details">
+                            <span class="tech">React</span>
+                            <span class="tech">Express</span>
+                            <span class="tech">AI-Generated</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Sudhanshugtm/weekly-goals-tracker" class="project-link" target="_blank">CODE →</a>
+                            <a href="https://mindful-goals-tracker.vercel.app" class="project-link" target="_blank">DEMO →</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="process-section" id="process">
+                <div class="section-header">
+                    <h2>AI COLLABORATION PROCESS</h2>
+                    <div class="accent-line"></div>
+                </div>
+
+                <div class="process-grid">
+                    <div class="process-step">
+                        <div class="step-number">01</div>
+                        <h3>FRAME</h3>
+                        <p>Define success metrics and user outcomes before touching any code. Map the product narrative.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">02</div>
+                        <h3>CO-BUILD</h3>
+                        <p>Partner with AI for architecture decisions, rapid prototyping, and implementation velocity.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">03</div>
+                        <h3>REFINE</h3>
+                        <p>Human judgment for micro-interactions, edge cases, and the final 10% that makes products feel intentional.</p>
+                    </div>
+                </div>
+
+                <div class="toolkit-section">
+                    <h3>CURRENT TOOLKIT</h3>
+                    <div class="tool-grid">
+                        <span class="tool-item">Claude AI</span>
+                        <span class="tool-item">GitHub Copilot</span>
+                        <span class="tool-item">TypeScript</span>
+                        <span class="tool-item">React</span>
+                        <span class="tool-item">Node.js</span>
+                        <span class="tool-item">Figma API</span>
+                        <span class="tool-item">Vercel</span>
+                        <span class="tool-item">Wikimedia Codex</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact-section" id="contact">
+                <div class="contact-cta">
+                    <h2>LET'S BUILD<br>SOMETHING<br>TOGETHER</h2>
+                    <p>Available for product strategy, AI integration consulting, and strategic development partnerships.</p>
+                    <div class="cta-buttons">
+                        <a href="mailto:sudhanshu.gautam@gmail.com" class="primary-cta">START CONVERSATION</a>
+                        <a href="/writing/" class="secondary-cta">READ MY WRITING</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="swiss-footer">
+        <div class="footer-content">
+            <p>© 2024 Sudhanshu Gautam — Designed with Swiss precision</p>
+            <p>Built with AI assistance • Jekyll • GitHub Pages</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mobile-nav');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            nav.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                const nav = document.getElementById('mobile-nav');
+                const toggle = document.querySelector('.mobile-menu-toggle');
+                
+                nav.classList.remove('active');
+                toggle.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

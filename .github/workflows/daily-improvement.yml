@@ -1,0 +1,287 @@
+name: Daily Portfolio Improvement
+
+# Runs every day at 7:00 AM IST (1:30 AM UTC, since IST = UTC+5:30)
+on:
+  schedule:
+    - cron: '30 1 * * *'  # 1:30 AM UTC = 7:00 AM IST
+  workflow_dispatch:  # Allow manual trigger for testing
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  create-improvement-task:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+      - name: Create improvement issue
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.COPILOT_TRIGGER_PAT }}
+          script: |
+            const date = new Date().toISOString().split('T')[0];
+
+            // List of potential improvements (rotating daily)
+            const improvements = [
+              {
+                title: "Improve accessibility: Enhance color contrast",
+                body: `**Daily Improvement Task - ${date}**
+
+            ### Objective
+            Review and improve color contrast ratios across the portfolio to ensure WCAG AA compliance.
+
+            ### Scope
+            - Check text/background contrast ratios
+            - Focus on interactive elements (links, buttons)
+            - Ensure minimum 4.5:1 contrast for normal text
+            - Ensure minimum 3:1 contrast for large text
+
+            ### Success Criteria
+            - At least one color contrast issue identified and fixed
+            - Changes maintain the existing design aesthetic
+            - No breaking changes to layout or functionality
+
+            ### Reference
+            See \`.github/agents/portfolio-improver.md\` for detailed guidelines.`
+              },
+              {
+                title: "Enhance content: Improve project descriptions",
+                body: `**Daily Improvement Task - ${date}**
+
+            ### Objective
+            Improve one project description with more specific details, metrics, or outcomes.
+
+            ### Scope
+            - Review project cards in index.html or landing concepts
+            - Add specific metrics or user impact where possible
+            - Improve clarity and conciseness
+            - Ensure consistent tone across descriptions
+
+            ### Success Criteria
+            - One project description is more specific and impactful
+            - Changes are factual and accurate
+            - Maintains professional tone
+
+            ### Reference
+            See \`.github/agents/portfolio-improver.md\` for detailed guidelines.`
+              },
+              {
+                title: "Optimize performance: Reduce CSS redundancy",
+                body: `**Daily Improvement Task - ${date}**
+
+            ### Objective
+            Identify and remove redundant or unused CSS rules to improve page load performance.
+
+            ### Scope
+            - Review style.css and landing concept CSS files
+            - Look for duplicate rules
+            - Identify unused selectors
+            - Consolidate similar styles
+
+            ### Success Criteria
+            - At least one redundant CSS rule removed or consolidated
+            - No visual regression
+            - Maintains responsive design
+
+            ### Reference
+            See \`.github/agents/portfolio-improver.md\` for detailed guidelines.`
+              },
+              {
+                title: "Improve UX: Enhance interactive feedback",
+                body: `**Daily Improvement Task - ${date}**
+
+            ### Objective
+            Improve hover states, focus indicators, or transitions for better user feedback.
+
+            ### Scope
+            - Review interactive elements (links, buttons, navigation)
+            - Enhance hover state visibility
+            - Improve focus indicators for keyboard navigation
+            - Add smooth transitions where appropriate
+
+            ### Success Criteria
+            - At least one interactive element has improved feedback
+            - Changes are subtle and professional
+            - Accessibility is maintained or improved
+
+            ### Reference
+            See \`.github/agents/portfolio-improver.md\` for detailed guidelines.`
+              },
+              {
+                title: "Enhance SEO: Improve meta descriptions",
+                body: `**Daily Improvement Task - ${date}**
+
+            ### Objective
+            Review and enhance meta descriptions for better search engine optimization.
+
+            ### Scope
+            - Review meta tags in HTML files
+            - Improve description clarity and keyword usage
+            - Ensure descriptions are within 150-160 characters
+            - Make descriptions compelling and accurate
+
+            ### Success Criteria
+            - At least one meta description is improved
+            - Changes are factual and relevant
+            - Character count is optimal
+
+            ### Reference
+            See \`.github/agents/portfolio-improver.md\` for detailed guidelines.`
+              },
+              {
+                title: "Improve responsive design: Optimize breakpoints",
+                body: `**Daily Improvement Task - ${date}**
+
+            ### Objective
+            Review and improve responsive design breakpoints for better mobile/tablet experience.
+
+            ### Scope
+            - Test portfolio on different screen sizes
+            - Identify awkward breakpoints
+            - Adjust media queries for smoother transitions
+            - Ensure content is readable at all sizes
+
+            ### Success Criteria
+            - At least one breakpoint is improved
+            - No visual regressions on other screen sizes
+            - Maintains design consistency
+
+            ### Reference
+            See \`.github/agents/portfolio-improver.md\` for detailed guidelines.`
+              },
+              {
+                title: "Enhance accessibility: Add ARIA labels",
+                body: `**Daily Improvement Task - ${date}**
+
+            ### Objective
+            Add or improve ARIA labels for better screen reader compatibility.
+
+            ### Scope
+            - Review interactive elements without clear text labels
+            - Add aria-label or aria-labelledby where needed
+            - Focus on navigation, links, and buttons
+            - Test with screen reader if possible
+
+            ### Success Criteria
+            - At least one element has improved ARIA labeling
+            - Labels are descriptive and helpful
+            - No redundant or incorrect ARIA usage
+
+            ### Reference
+            See \`.github/agents/portfolio-improver.md\` for detailed guidelines.`
+              }
+            ];
+
+            // Rotate through improvements based on day of year
+            const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+            const improvement = improvements[dayOfYear % improvements.length];
+
+            // Check if there's already an open issue for today
+            const existingIssues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'daily-improvement',
+              per_page: 5
+            });
+
+            const todayIssue = existingIssues.data.find(issue =>
+              issue.title.includes(date) || issue.created_at.startsWith(date)
+            );
+
+            if (todayIssue) {
+              console.log(`Issue already exists for today: #${todayIssue.number}`);
+              return;
+            }
+
+            // Create new issue
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[${date}] ${improvement.title}`,
+              body: improvement.body,
+              labels: ['daily-improvement', 'copilot-agent', 'enhancement']
+            });
+
+            console.log(`Created issue #${issue.data.number}: ${issue.data.title}`);
+
+            // Assign the issue to Copilot agent using GraphQL
+            // First, get the Copilot actor ID from suggested actors
+            const actorsQuery = `
+              query($owner: String!, $repo: String!) {
+                repository(owner: $owner, name: $repo) {
+                  suggestedActors(loginNames: "copilot", capabilities: [CAN_BE_ASSIGNED], first: 100) {
+                    nodes {
+                      login
+                      __typename
+                      ... on Bot {
+                        id
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            const actorsResult = await github.graphql(actorsQuery, {
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+
+            const copilotActor = actorsResult.repository.suggestedActors.nodes.find(
+              actor => actor.login === 'copilot-swe-agent' || actor.login === 'copilot'
+            );
+
+            if (!copilotActor) {
+              console.error('⚠️ Copilot coding agent not found in suggested actors');
+              console.error('Available actors:', actorsResult.repository.suggestedActors.nodes.map(a => a.login));
+              console.log(`\n👉 Please manually assign issue #${issue.data.number} to Copilot via GitHub UI`);
+            } else {
+              try {
+                // Assign using GraphQL mutation
+                const assignMutation = `
+                  mutation($issueId: ID!, $actorIds: [ID!]!) {
+                    replaceActorsForAssignable(input: {
+                      assignableId: $issueId
+                      actorIds: $actorIds
+                    }) {
+                      assignable {
+                        assignees(first: 10) {
+                          nodes {
+                            login
+                          }
+                        }
+                      }
+                    }
+                  }
+                `;
+
+                const assignResult = await github.graphql(assignMutation, {
+                  issueId: issue.data.node_id,
+                  actorIds: [copilotActor.id]
+                });
+
+                console.log(`✅ Assigned issue #${issue.data.number} to @copilot`);
+                console.log('Assignees:', assignResult.replaceActorsForAssignable.assignable.assignees.nodes.map(n => n.login));
+              } catch (error) {
+                console.error(`⚠️ Failed to assign via GraphQL: ${error.message}`);
+                console.log(`\n👉 Please manually assign issue #${issue.data.number} to Copilot via GitHub UI`);
+                console.log(`Issue URL: https://github.com/${context.repo.owner}/${context.repo.repo}/issues/${issue.data.number}`);
+              }
+            }
+
+            core.setOutput('issue_number', issue.data.number);
+
+      - name: Summary
+        run: |
+          echo "✅ Daily improvement task created successfully"
+          echo "📅 Date: ${{ steps.date.outputs.date }}"
+          echo "🔗 Issue: ${{ steps.create-improvement-issue.outputs.issue_number }}"

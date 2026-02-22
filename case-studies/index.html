@@ -1,0 +1,76 @@
+---
+layout: default
+title: Case Studies
+description: "Product and UX case studies: Wikipedia translation tools, KaiOS feature phone design, Wikistories mobile formats. Human-centered design at global scale."
+permalink: /case-studies/
+---
+
+<section class="case-studies-page" style="padding-top: 80px;">
+  <div class="page-intro">
+    <h1>Case studies</h1>
+    <p class="intro-text">Selected work from the Wikimedia Foundation, focusing on newcomer experiences, content tools, and accessibility.</p>
+  </div>
+
+  <div class="case-studies-list">
+    {% for cs in site.data.case_studies %}
+    <article class="case-study-card" id="{{ cs.id }}">
+      <div class="case-study-meta">
+        <span class="case-org">{{ cs.org }}</span>
+        <span class="case-timeframe">{{ cs.timeframe }}</span>
+      </div>
+
+      <h2 class="case-title">{{ cs.title }}</h2>
+
+      <div class="case-role">
+        <span class="role-label">Role</span>
+        <span class="role-value">{{ cs.role }}</span>
+      </div>
+
+      <div class="case-content">
+        <div class="case-section">
+          <h3>Problem</h3>
+          <p>{{ cs.problem }}</p>
+        </div>
+
+        {% if cs.outcome %}
+        <div class="case-section">
+          <h3>Outcome</h3>
+          <p>{{ cs.outcome }}</p>
+        </div>
+        {% endif %}
+
+        {% if cs.impact and cs.impact.size > 0 %}
+        <div class="case-section">
+          <h3>Impact</h3>
+          <ul class="impact-list">
+            {% for item in cs.impact %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% if cs.responsibilities and cs.responsibilities.size > 0 %}
+        <div class="case-section case-responsibilities">
+          <h3>Responsibilities</h3>
+          <ul class="responsibilities-list">
+            {% for item in cs.responsibilities %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+
+      {% if cs.links and cs.links.size > 0 %}
+      <div class="case-links">
+        {% for l in cs.links %}
+        <a href="{{ l.url }}" class="case-link" target="_blank">{{ l.label }} →</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </article>
+    {% endfor %}
+  </div>
+</section>
+

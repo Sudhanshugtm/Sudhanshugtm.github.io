@@ -1,0 +1,103 @@
+name: "Sudhanshu Gautam"
+title: "Lead UX Designer"
+location: "Remote / Global"
+email: "Sudhanshu9252@gmail.com"
+linkedin: "https://linkedin.com/in/sudhanshugtm"
+github: "https://github.com/Sudhanshugtm"
+website: "https://sudhanshugtm.github.io/portfolio"
+
+summary: |
+  Lead UX Designer with 10+ years spanning software engineering and design.
+  Engineering roots at Tech Mahindra, design training at CIID Copenhagen,
+  healthcare impact at Noora Health, and global reach at Wikimedia Foundation.
+  I build accessible, research-driven products for emerging markets and
+  underserved communities.
+
+skills:
+  - label: Research & Strategy
+    items:
+      - Planning & facilitation
+      - User interviews & synthesis
+      - Opportunity framing
+      - Metrics & success criteria
+  - label: Interaction & Systems
+    items:
+      - Flows & IA
+      - Design systems
+      - Accessibility
+      - Content design
+  - label: Prototyping
+    items:
+      - Figma prototypes
+      - Interactive prototyping
+      - Usability testing
+  - label: Collaboration
+    items:
+      - Cross‑functional leadership
+      - Stakeholder alignment
+      - Roadmapping
+
+tools:
+  - Figma
+  - FigJam
+  - Prototyping (various)
+  - Jira / Linear
+  - Notion / Confluence
+
+experience:
+  - company: Wikimedia Foundation
+    role: Lead UX Designer
+    timeframe: 2020 — Present
+    location: Remote
+    summary: |
+      Language & Product Localisation (2022–Present): Leading UX for Content
+      Translation, helping volunteer translators bridge language gaps across
+      Wikipedia. Inuka Team (2020–2022): Designed for emerging markets and
+      first-time internet users across mobile-first products.
+    achievements:
+      - "Designed Wikipedia for KaiOS app: 1.6M+ downloads, keypad-first navigation for 100M+ feature phone users globally."
+      - "Led Wikistories Indonesia pilot: 2,714+ stories created, 89 returning editors, community outreach across 4 cities."
+      - "Improved Content Translation UX: clearer flows, better guidance, WCAG AA accessibility, Codex design system alignment."
+      - "Explored article summarization concepts for newcomers, informing future AI-assisted features."
+
+  - company: Noora Health
+    role: Design Lead
+    timeframe: 2015 — 2020
+    location: Bangalore, India
+    summary: |
+      Progressed from Design Resident to Design Lead over 5 years. Built and
+      scaled the Care Companion Program's digital touchpoints, reaching millions
+      of patients and family caregivers across India. Led remote engagement
+      services and managed a growing design team.
+    achievements:
+      - "Designed and scaled SMS/IVR-based remote engagement service for post-discharge patient follow-up."
+      - "Led user research in low-literacy, multilingual healthcare settings across Indian states."
+      - "Built design team and processes: grew from solo designer to managing a team of designers."
+      - "Shipped caregiver training materials and digital tools used in 200+ partner hospitals."
+
+  - company: Tech Mahindra
+    role: Software Engineer
+    timeframe: 2012 — 2015
+    location: Pune, India
+    summary: |
+      Started career as a software engineer at one of India's largest IT services
+      companies. This engineering foundation shaped my approach to design—systems
+      thinking, technical feasibility, and developer collaboration.
+    achievements:
+      - "Developed and maintained enterprise software applications for global clients."
+      - "Collaborated with cross-functional teams on full software development lifecycle."
+      - "Built foundation in systems thinking and technical problem-solving that informs design work today."
+
+education:
+  - school: Copenhagen Institute of Interaction Design (CIID)
+    degree: Interaction Design Programme
+    timeframe: 2015
+    notes: "One‑year programme"
+
+links:
+  - label: Portfolio
+    url: "https://sudhanshugtm.github.io/portfolio"
+  - label: LinkedIn
+    url: "https://linkedin.com/in/sudhanshugtm"
+  - label: GitHub
+    url: "https://github.com/Sudhanshugtm"

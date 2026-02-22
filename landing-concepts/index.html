@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Concepts - Sudhanshu Gautam</title>
+    <meta name="description" content="Interactive showcase of four portfolio design prototypes. Explore modular grids, bold gradients, editorial layouts & typographic approaches for AI product work.">
+    <style>
+        :root {
+            font-family: "Inter", system-ui, sans-serif;
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.15), transparent 45%),
+                radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.12), transparent 40%),
+                #f1f5f9;
+        }
+        header {
+            padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 6vw, 4rem);
+            text-align: center;
+        }
+        header h1 {
+            margin-bottom: 0.5rem;
+            font-size: clamp(2.2rem, 5vw, 3rem);
+        }
+        header p {
+            max-width: 60ch;
+            margin: 0 auto;
+            color: #475569;
+            line-height: 1.6;
+        }
+        main {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 6vw, 4rem) clamp(3rem, 6vw, 4rem);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: clamp(1.5rem, 4vw, 2.5rem);
+        }
+        article {
+            background: rgba(255, 255, 255, 0.82);
+            border-radius: 24px;
+            padding: 1.75rem;
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            display: grid;
+            gap: 0.75rem;
+        }
+        article h2 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        article p {
+            color: #334155;
+            line-height: 1.5;
+        }
+        a.concept-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.4rem;
+            border-radius: 12px;
+            background: #2563eb;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        a.concept-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 35px rgba(37, 99, 235, 0.35);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Landing page variations</h1>
+        <p>Explore four alternate directions for the homepage hero and primary sections. Each concept keeps the same story but explores different layouts, tones, and visual accents.</p>
+    </header>
+    <main>
+        <div class="grid">
+            <article>
+                <h2>Concept A — Split sidebar</h2>
+                <p>Minimalist layout with a sticky sidebar navigation and bright content cards.</p>
+                <a class="concept-link" href="variant-a.html">Open concept A</a>
+            </article>
+            <article>
+                <h2>Concept B — Gradient momentum</h2>
+                <p>Bold gradient hero with stat card and sculpted panels for projects and process.</p>
+                <a class="concept-link" href="variant-b.html">Open concept B</a>
+            </article>
+            <article>
+                <h2>Concept C — Light modular</h2>
+                <p>Soft modular blocks with engagement streams and proof points arranged in cards.</p>
+                <a class="concept-link" href="variant-c.html">Open concept C</a>
+            </article>
+            <article>
+                <h2>Concept D — Dark studio</h2>
+                <p>High-contrast night mode aesthetic with glowing accents and cinematic depth.</p>
+                <a class="concept-link" href="variant-d.html">Open concept D</a>
+            </article>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,121 @@
+/* Resume-only styles
+   Targets resume/index.html markup (e.g., .resume-content)
+   Optimized for readability + print.
+*/
+
+.resume-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.resume-content h1 {
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+
+.resume-content h2 {
+  font-size: 1.2rem;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.resume-content h3 {
+  font-size: 1.05rem;
+  margin-top: 14px;
+}
+
+.resume-content p,
+.resume-content li {
+  font-size: 1rem;
+}
+
+.resume-content .resume-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.resume-content .resume-contact {
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+.resume-content .resume-section {
+  margin-top: 18px;
+}
+
+.resume-content .resume-item {
+  margin: 12px 0;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.resume-content .resume-item .meta {
+  color: var(--muted);
+  font-size: .95rem;
+  margin-top: 2px;
+}
+
+.resume-content .resume-item ul {
+  margin: 10px 0 0;
+}
+
+.resume-content a { color: var(--link); }
+
+@media print {
+  :root {
+    --bg: #fff;
+    --text: #000;
+    --muted: #222;
+    --border: #cfcfcf;
+    --link: #000;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .site-header,
+  .site-footer,
+  .skip-link {
+    display: none !important;
+  }
+
+  .site-main {
+    padding: 0 !important;
+  }
+
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  .resume-content {
+    max-width: none;
+    margin: 0;
+  }
+
+  .resume-content .resume-item {
+    border: 1px solid #cfcfcf;
+    box-shadow: none;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Keep headings with following content */
+  h2, h3 { break-after: avoid; }
+
+  @page {
+    margin: 0.6in;
+  }
+}

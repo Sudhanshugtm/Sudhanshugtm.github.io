@@ -1,0 +1,28 @@
+title: "Sudhanshu Gautam — Portfolio"
+description: "Lead UX designer at Wikimedia Foundation. Portfolio and resume with selected case studies and writing."
+url: "https://sudhanshugtm.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Exclude from processing
+exclude:
+  - README.md
+  - memory/
+  - index.md
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      permalink: /writing/:title/
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
