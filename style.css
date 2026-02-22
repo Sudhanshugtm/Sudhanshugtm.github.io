@@ -61,13 +61,13 @@ a:hover { color: var(--link-hover); }
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 20px;
+    padding: 0 24px;
   }
 }
 
 @media (max-width: 480px) {
   .container {
-    padding: 0 20px;
+    padding: 0 24px;
   }
 }
 
