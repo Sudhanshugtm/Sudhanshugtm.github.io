@@ -128,6 +128,43 @@ a:hover { color: var(--link-hover); }
   padding: 36px 0 56px;
 }
 
+/* Simple homepage */
+.home-simple {
+  max-width: 65ch;
+  margin: 80px auto;
+}
+
+.home-simple h1 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.home-simple .intro {
+  font-size: 1.15rem;
+  color: var(--muted);
+  margin-bottom: 48px;
+  line-height: 1.6;
+}
+
+.home-nav {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.home-nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.home-nav a:hover {
+  border-bottom-color: var(--accent);
+}
+
 .site-footer {
   border-top: 1px solid var(--border);
   padding: 24px 0;
