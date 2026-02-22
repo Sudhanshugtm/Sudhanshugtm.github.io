@@ -7,11 +7,16 @@ baseurl: ""
 markdown: kramdown
 highlighter: rouge
 
+# Image optimization (for jekyll-image-size or similar plugins)
+# Note: GitHub Pages has limited plugin support
+# For production, consider using a CDN or image optimization service
+
 # Exclude from processing
 exclude:
   - README.md
   - memory/
   - index.md
+  - assets/images/README.md
 
 # Defaults
 defaults:

@@ -148,6 +148,18 @@ a:hover { color: var(--link-hover); }
   margin: 80px auto;
 }
 
+.profile-photo {
+  margin-bottom: 24px;
+}
+
+.profile-photo img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--border);
+}
+
 .home-simple h1 {
   font-size: 2.5rem;
   margin-bottom: 16px;
@@ -346,8 +358,20 @@ blockquote {
   box-shadow: var(--shadow);
 }
 
+.case-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
 .case-card h3 { margin-top: 0; }
 .case-card p { color: var(--muted); }
+.case-card a {
+  display: inline-block;
+  margin-top: 8px;
+  font-weight: 500;
+}
 
 /* Tables */
 table {
