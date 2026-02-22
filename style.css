@@ -403,7 +403,8 @@ input, textarea, select {
   .header-inner {
     flex-direction: column;
     align-items: flex-start;
-    padding: 10px 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .site-main {
