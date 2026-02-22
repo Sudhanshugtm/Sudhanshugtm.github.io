@@ -61,13 +61,13 @@ a:hover { color: var(--link-hover); }
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 40px;
+    padding: 0 24px;
   }
 }
 
 @media (max-width: 480px) {
   .container {
-    padding: 0 32px;
+    padding: 0 20px;
   }
 }
 
@@ -120,7 +120,7 @@ a:hover { color: var(--link-hover); }
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
@@ -128,7 +128,7 @@ a:hover { color: var(--link-hover); }
   color: var(--muted);
   text-decoration: none;
   font-weight: 600;
-  padding: 8px 12px;
+  padding: 6px 8px;
   border-radius: 10px;
 }
 
