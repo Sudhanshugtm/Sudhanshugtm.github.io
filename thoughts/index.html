@@ -1,0 +1,97 @@
+---
+layout: default
+title: Thoughts
+description: "Raw voice notes — unfiltered thinking about design, work, and curiosity."
+permalink: /thoughts/
+---
+
+<div class="thoughts-page">
+  <h1>Thoughts</h1>
+  <p class="thoughts-intro">Raw voice notes. No script, no editing. Just whatever I'm thinking about.</p>
+
+  <div class="thoughts-list">
+    {% for thought in site.data.thoughts %}
+    <article class="thought-entry">
+      <div class="thought-meta">
+        <time>{{ thought.date }}</time>
+        {% if thought.duration %}<span class="thought-duration">{{ thought.duration }}</span>{% endif %}
+      </div>
+      {% if thought.caption %}<p class="thought-caption">{{ thought.caption }}</p>{% endif %}
+      <div class="audio-player" data-src="/audio/{{ thought.file }}">
+        <button class="play-btn" aria-label="Play">
+          <svg class="icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          <svg class="icon-pause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>
+        </button>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <span class="time-display">0:00</span>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+
+  {% if site.data.thoughts.size == 0 or site.data.thoughts.first.file == "sample.mp3" %}
+  <p class="thoughts-empty">First voice note coming soon.</p>
+  {% endif %}
+</div>
+
+<script>
+document.querySelectorAll('.audio-player').forEach(player => {
+  const src = player.dataset.src;
+  const playBtn = player.querySelector('.play-btn');
+  const iconPlay = player.querySelector('.icon-play');
+  const iconPause = player.querySelector('.icon-pause');
+  const progressBar = player.querySelector('.progress-bar');
+  const progressFill = player.querySelector('.progress-fill');
+  const timeDisplay = player.querySelector('.time-display');
+  let audio = null;
+
+  function formatTime(s) {
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return m + ':' + (sec < 10 ? '0' : '') + sec;
+  }
+
+  playBtn.addEventListener('click', () => {
+    if (!audio) {
+      audio = new Audio(src);
+      audio.addEventListener('timeupdate', () => {
+        const pct = (audio.currentTime / audio.duration) * 100;
+        progressFill.style.width = pct + '%';
+        timeDisplay.textContent = formatTime(audio.currentTime);
+      });
+      audio.addEventListener('ended', () => {
+        iconPlay.style.display = '';
+        iconPause.style.display = 'none';
+        progressFill.style.width = '0%';
+        timeDisplay.textContent = '0:00';
+      });
+    }
+
+    if (audio.paused) {
+      // Pause all other players
+      document.querySelectorAll('.audio-player audio').forEach(a => { if (a !== audio) a.pause(); });
+      document.querySelectorAll('.audio-player').forEach(p => {
+        p.querySelector('.icon-play').style.display = '';
+        p.querySelector('.icon-pause').style.display = 'none';
+      });
+      audio.play();
+      iconPlay.style.display = 'none';
+      iconPause.style.display = '';
+    } else {
+      audio.pause();
+      iconPlay.style.display = '';
+      iconPause.style.display = 'none';
+    }
+  });
+
+  progressBar.addEventListener('click', (e) => {
+    if (audio && audio.duration) {
+      const rect = progressBar.getBoundingClientRect();
+      const pct = (e.clientX - rect.left) / rect.width;
+      audio.currentTime = pct * audio.duration;
+    }
+  });
+});
+</script>
