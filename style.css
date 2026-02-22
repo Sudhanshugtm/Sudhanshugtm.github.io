@@ -130,6 +130,7 @@ a:hover { color: var(--link-hover); }
   font-weight: 600;
   padding: 6px 8px;
   border-radius: 10px;
+  font-size: 0.95rem;
 }
 
 .nav-link:hover {
@@ -405,6 +406,15 @@ input, textarea, select {
     align-items: flex-start;
     padding-top: 10px;
     padding-bottom: 10px;
+  }
+
+  .site-nav {
+    gap: 4px;
+  }
+
+  .nav-link {
+    padding: 6px 6px;
+    font-size: 0.9rem;
   }
 
   .site-main {
