@@ -19,22 +19,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <a class="skip-link" href="#content">Skip to content</a>
+    <div class="page-wrap">
+      <a class="skip-link" href="#content">Skip to content</a>
 
-    <nav class="site-nav" aria-label="Primary">
-      <a href="{{ "/" | relative_url }}">Sudhanshu</a>
-      <span class="nav-sep">/</span>
-      <a href="{{ "/writing/" | relative_url }}">Writing</a>
-      <a href="{{ "/case-studies/" | relative_url }}">Work</a>
-      <a href="{{ "/resume/" | relative_url }}">Resume</a>
-    </nav>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="{{ "/" | relative_url }}">Sudhanshu</a>
+        <a href="{{ "/writing/" | relative_url }}">Writing</a>
+        <a href="{{ "/case-studies/" | relative_url }}">Work</a>
+        <a href="{{ "/resume/" | relative_url }}">Resume</a>
+      </nav>
 
-    <main id="content">
-      {{ content }}
-    </main>
+      <main id="content">
+        {{ content }}
+      </main>
 
-    <footer class="site-footer">
-      <p>© {{ site.time | date: "%Y" }}</p>
-    </footer>
+      <footer class="site-footer">
+        <p>© {{ site.time | date: "%Y" }}</p>
+      </footer>
+    </div>
   </body>
 </html>

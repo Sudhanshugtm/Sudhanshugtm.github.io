@@ -29,13 +29,19 @@ html {
 
 body {
   margin: 0;
-  padding: 32px;
+  padding: 0;
   font-family: var(--font);
   font-size: 17px;
   line-height: 1.65;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
+}
+
+.page-wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 32px 24px;
 }
 
 img { max-width: 100%; height: auto; }
@@ -72,8 +78,7 @@ a:hover {
 
 /* ---- Nav ---- */
 .site-nav {
-  max-width: var(--container);
-  margin: 0 auto 64px;
+  margin: 0 0 64px;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -102,8 +107,6 @@ a:hover {
 
 /* ---- Main ---- */
 main {
-  max-width: var(--container);
-  margin: 0 auto;
   min-height: 60vh;
 }
 
@@ -133,8 +136,6 @@ main {
 
 /* ---- Footer ---- */
 .site-footer {
-  max-width: var(--container);
-  margin: 0 auto;
   padding: 48px 0 24px;
   border-top: 1px solid var(--border);
 }
@@ -409,8 +410,11 @@ input, textarea, select { font: inherit; }
 
 /* ---- Responsive ---- */
 @media (max-width: 720px) {
+  .page-wrap {
+    padding: 24px 20px;
+  }
+
   body {
-    padding: 24px;
     font-size: 16px;
   }
 
