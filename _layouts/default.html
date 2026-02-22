@@ -8,10 +8,8 @@
 
     <title>{{ page.title }}{% if page.title != site.title %} · {{ site.title }}{% endif %}</title>
 
-    <!-- Site styles -->
     <link rel="stylesheet" href="{{ "/style.css" | relative_url }}" />
 
-    <!-- Resume styles (only on /resume/) -->
     {% if page.url contains '/resume/' %}
       <link rel="stylesheet" href="{{ "/resume.css" | relative_url }}" />
     {% endif %}
@@ -23,29 +21,20 @@
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
 
-    <header class="site-header" role="banner">
-      <div class="container header-inner">
-        <a class="site-title" href="{{ "/" | relative_url }}">{{ site.title }}</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="{{ "/" | relative_url }}">Sudhanshu</a>
+      <span class="nav-sep">/</span>
+      <a href="{{ "/writing/" | relative_url }}">Writing</a>
+      <a href="{{ "/case-studies/" | relative_url }}">Work</a>
+      <a href="{{ "/resume/" | relative_url }}">Resume</a>
+    </nav>
 
-        <nav class="site-nav" aria-label="Primary">
-          <a class="nav-link" href="{{ "/" | relative_url }}">Home</a>
-          <a class="nav-link" href="{{ "/writing/" | relative_url }}">Writing</a>
-          <a class="nav-link" href="{{ "/case-studies/" | relative_url }}">Case Studies</a>
-          <a class="nav-link" href="{{ "/resume/" | relative_url }}">Resume</a>
-        </nav>
-      </div>
-    </header>
-
-    <main id="content" class="site-main" role="main">
-      <div class="container">
-        {{ content }}
-      </div>
+    <main id="content">
+      {{ content }}
     </main>
 
-    <footer class="site-footer" role="contentinfo">
-      <div class="container footer-inner">
-        <p class="muted">© {{ site.time | date: "%Y" }} {{ site.title }}</p>
-      </div>
+    <footer class="site-footer">
+      <p>© {{ site.time | date: "%Y" }}</p>
     </footer>
   </body>
 </html>

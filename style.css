@@ -1,32 +1,26 @@
 /*
-  Light theme + stabilized layout
-  - Designed for clean readability, writing pages, and case studies.
-  - Resume gets additional styling from /resume.css.
+  Minimal portfolio — Sudhanshu Gautam
+  Nothing extra. Let the words do the work.
 */
 
 :root {
-  --bg: #ffffff;
-  --surface: #f6f7f9;
-  --text: #111827;     /* slate-900 */
-  --muted: #4b5563;    /* gray-600 */
-  --border: #e5e7eb;   /* gray-200 */
-  --link: #1d4ed8;     /* blue-700 */
-  --link-hover: #1e40af; /* blue-800 */
-  --accent: #2563eb;   /* blue-600 */
-  --shadow: 0 1px 2px rgba(0,0,0,.05);
-
+  --text: #1a1a1a;
+  --muted: #666;
+  --faint: #999;
+  --border: #e0e0e0;
+  --bg: #fff;
+  --link: #1a1a1a;
+  --link-hover: #000;
+  --accent: #1a1a1a;
+  --surface: #f8f8f8;
+  --font: Inter, system-ui, -apple-system, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --container: 640px;
   --radius: 12px;
-  --container: 980px;
-
-  --font-sans: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
-    "Segoe UI Emoji";
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-
-  --lh: 1.6;
+  --shadow: 0 1px 2px rgba(0,0,0,.05);
 }
 
-* { box-sizing: border-box; }
-html, body { height: 100%; }
+*, *::before, *::after { box-sizing: border-box; }
 
 html {
   color-scheme: light;
@@ -35,49 +29,37 @@ html {
 
 body {
   margin: 0;
-  font-family: var(--font-sans);
-  line-height: var(--lh);
+  padding: 24px;
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.65;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 img { max-width: 100%; height: auto; }
 
+/* ---- Links ---- */
 a {
-  color: var(--link);
-  text-decoration-thickness: .08em;
-  text-underline-offset: .18em;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
 }
 
-a:hover { color: var(--link-hover); }
-
-.container {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 0 40px;
+a:hover {
+  text-decoration-color: var(--text);
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 0 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 20px;
-  }
-}
-
-/* Skip link */
+/* ---- Skip link ---- */
 .skip-link {
   position: absolute;
   left: 12px;
   top: 10px;
   padding: 10px 12px;
-  border-radius: 10px;
+  border-radius: 8px;
   background: var(--text);
   color: #fff;
   transform: translateY(-200%);
@@ -86,146 +68,96 @@ a:hover { color: var(--link-hover); }
 }
 .skip-link:focus {
   transform: translateY(0);
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
 }
 
-/* Header / nav */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(255,255,255,.85);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
-}
-
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  min-height: 64px;
-}
-
-.site-title {
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--text);
-  text-decoration: none;
-}
-
-.site-title:hover { color: var(--text); }
-
+/* ---- Nav ---- */
 .site-nav {
+  max-width: var(--container);
+  margin: 0 auto 64px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 15px;
 }
 
-.nav-link {
-  color: var(--muted);
+.site-nav a {
   text-decoration: none;
-  font-weight: 600;
-  padding: 6px 8px;
-  border-radius: 10px;
-  font-size: 0.95rem;
+  color: var(--muted);
+  transition: color 0.15s;
 }
 
-.nav-link:hover {
+.site-nav a:first-child {
   color: var(--text);
-  background: var(--surface);
+  font-weight: 600;
+  margin-right: auto;
 }
 
-/* Main / footer */
-.site-main {
-  padding: 36px 0 56px;
+.site-nav a:hover {
+  color: var(--text);
 }
 
-/* Simple homepage */
-.home-simple {
-  max-width: 65ch;
-  margin: 80px auto;
+.nav-sep {
+  display: none;
 }
 
-.profile-photo {
-  margin-bottom: 24px;
+/* ---- Main ---- */
+main {
+  max-width: var(--container);
+  margin: 0 auto;
+  min-height: 60vh;
 }
 
-.profile-photo img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--border);
+/* ---- Homepage ---- */
+.home {
+  padding: 60px 0 80px;
 }
 
-.home-simple h1 {
-  font-size: 2.5rem;
-  margin-bottom: 16px;
-}
-
-.home-simple .intro {
-  font-size: 1.15rem;
+.home p {
+  margin: 0 0 24px;
+  font-size: 1.25rem;
+  line-height: 1.7;
   color: var(--muted);
-  margin-bottom: 48px;
-  line-height: 1.6;
 }
 
-.home-nav {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
+.home .home-greeting {
+  color: var(--text);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 32px;
 }
 
-.home-nav a {
-  text-decoration: none;
+.home a {
   color: var(--text);
   font-weight: 500;
-  padding-bottom: 2px;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.2s;
 }
 
-.home-nav a:hover {
-  border-bottom-color: var(--accent);
-}
-
+/* ---- Footer ---- */
 .site-footer {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 48px 0 24px;
   border-top: 1px solid var(--border);
-  padding: 24px 0;
-  background: #fff;
 }
 
-.footer-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+.site-footer p {
+  color: var(--faint);
+  font-size: 13px;
+  margin: 0;
 }
 
-.muted { color: var(--muted); }
-
-/* Typography */
+/* ---- Typography ---- */
 h1, h2, h3, h4 {
-  line-height: 1.2;
+  line-height: 1.25;
   letter-spacing: -0.02em;
   margin: 0 0 12px;
+  font-weight: 600;
 }
 
-h1 { font-size: clamp(1.75rem, 5vw, 2.6rem); }
-h2 { font-size: clamp(1.3rem, 3vw, 1.6rem); margin-top: 28px; }
-h3 { font-size: clamp(1.1rem, 2.5vw, 1.25rem); margin-top: 22px; }
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.25rem; margin-top: 32px; }
+h3 { font-size: 1.1rem; margin-top: 24px; }
 
-p { margin: 0 0 14px; }
-
-@media (max-width: 480px) {
-  body {
-    font-size: 16px;
-    line-height: 1.65;
-  }
-}
+p { margin: 0 0 16px; }
 
 ul, ol { padding-left: 1.25rem; }
 li { margin: 6px 0; }
@@ -233,53 +165,43 @@ li { margin: 6px 0; }
 hr {
   border: 0;
   border-top: 1px solid var(--border);
-  margin: 28px 0;
+  margin: 32px 0;
 }
 
 code, pre {
-  font-family: var(--font-mono);
-  font-size: .95em;
+  font-family: var(--mono);
+  font-size: .9em;
 }
 
 pre {
-  padding: 14px 16px;
-  border: 1px solid var(--border);
+  padding: 16px;
   background: var(--surface);
-  border-radius: var(--radius);
-  overflow: auto;
+  border-radius: 8px;
+  overflow-x: auto;
+  border: 1px solid var(--border);
 }
 
 blockquote {
-  margin: 18px 0;
-  padding: 12px 16px;
-  border-left: 3px solid var(--border);
-  background: var(--surface);
-  border-radius: 10px;
+  margin: 20px 0;
+  padding: 0 0 0 20px;
+  border-left: 2px solid var(--border);
   color: var(--muted);
 }
 
-/* General content blocks */
-.card {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: #fff;
-  box-shadow: var(--shadow);
-  padding: 18px 18px;
-}
+.muted { color: var(--muted); }
 
-/* Writing */
+/* ---- Writing ---- */
 .writing-simple,
 .post,
 .article {
-  max-width: 72ch;
+  max-width: var(--container);
   margin: 0 auto;
 }
 
 .writing-simple h1 {
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
 
-/* Simple post list */
 .post-list-simple {
   list-style: none;
   padding: 0;
@@ -287,15 +209,15 @@ blockquote {
 }
 
 .post-list-simple li {
-  margin: 0 0 16px;
+  margin: 0 0 20px;
   display: flex;
   gap: 16px;
   align-items: baseline;
 }
 
 .post-list-simple .post-date {
-  color: var(--muted);
-  font-size: 0.9rem;
+  color: var(--faint);
+  font-size: 0.85rem;
   font-variant-numeric: tabular-nums;
   min-width: 80px;
 }
@@ -307,13 +229,12 @@ blockquote {
 }
 
 .post-list-simple a:hover {
-  color: var(--accent);
   text-decoration: underline;
 }
 
-/* Post layout */
+/* ---- Post ---- */
 .post-hero {
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
 
 .post-hero h1 {
@@ -321,12 +242,12 @@ blockquote {
 }
 
 .post-hero .post-date {
-  color: var(--muted);
-  font-size: 0.95rem;
+  color: var(--faint);
+  font-size: 0.9rem;
 }
 
 .post-content {
-  max-width: 65ch;
+  max-width: var(--container);
 }
 
 .back-link {
@@ -334,15 +255,101 @@ blockquote {
   margin-top: 48px;
   color: var(--muted);
   text-decoration: none;
+  font-size: 0.9rem;
 }
 
 .back-link:hover {
   color: var(--text);
 }
 
-/* Case studies */
+/* ---- Case studies ---- */
+.case-studies-page {
+  padding-top: 0 !important;
+}
+
 .case-studies {
-  margin-top: 10px;
+  margin-top: 0;
+}
+
+.page-intro {
+  margin-bottom: 48px;
+}
+
+.intro-text {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.case-studies-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.case-study-card {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.case-study-card:last-child {
+  border-bottom: none;
+}
+
+.case-study-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: var(--faint);
+  margin-bottom: 8px;
+}
+
+.case-title {
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.case-role {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.role-label {
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.case-section {
+  margin-bottom: 16px;
+}
+
+.case-section h3 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--faint);
+  margin-top: 16px;
+  margin-bottom: 6px;
+}
+
+.case-section p {
+  color: var(--muted);
+}
+
+.impact-list,
+.responsibilities-list {
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+.case-links {
+  margin-top: 12px;
+}
+
+.case-link {
+  font-size: 0.9rem;
+  margin-right: 16px;
 }
 
 .case-grid {
@@ -353,28 +360,31 @@ blockquote {
 
 .case-card {
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 8px;
   background: #fff;
   padding: 16px;
-  box-shadow: var(--shadow);
 }
 
 .case-card img {
   width: 100%;
   height: auto;
-  border-radius: 8px;
+  border-radius: 6px;
   margin-bottom: 12px;
 }
 
 .case-card h3 { margin-top: 0; }
 .case-card p { color: var(--muted); }
-.case-card a {
-  display: inline-block;
-  margin-top: 8px;
-  font-weight: 500;
+
+/* ---- Cards ---- */
+.card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: var(--shadow);
+  padding: 18px;
 }
 
-/* Tables */
+/* ---- Tables ---- */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -383,7 +393,7 @@ table {
 
 thead th {
   text-align: left;
-  font-weight: 700;
+  font-weight: 600;
   border-bottom: 1px solid var(--border);
   padding: 10px 8px;
 }
@@ -394,61 +404,38 @@ tbody td {
   vertical-align: top;
 }
 
-/* Forms (basic) */
-input, textarea, select {
-  font: inherit;
-}
+/* ---- Forms ---- */
+input, textarea, select { font: inherit; }
 
-/* Responsive */
+/* ---- Responsive ---- */
 @media (max-width: 720px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 10px;
-    padding-bottom: 10px;
+  body {
+    padding: 20px;
+    font-size: 16px;
   }
 
   .site-nav {
-    gap: 4px;
+    margin-bottom: 40px;
+    gap: 14px;
+    font-size: 14px;
   }
 
-  .nav-link {
-    padding: 6px 6px;
-    font-size: 0.9rem;
+  .home {
+    padding: 32px 0 48px;
   }
 
-  .site-main {
-    padding: 22px 0 44px;
+  .home .home-greeting {
+    font-size: 1.3rem;
+  }
+
+  .home p {
+    font-size: 1.05rem;
   }
 
   .case-grid {
     grid-template-columns: 1fr;
   }
 
-  /* Responsive homepage */
-  .home-simple {
-    margin: 40px auto;
-  }
-
-  .home-simple h1 {
-    font-size: 2rem;
-  }
-
-  .home-simple .intro {
-    font-size: 1rem;
-    margin-bottom: 32px;
-  }
-
-  .home-nav {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .home-nav a {
-    font-size: 1.1rem;
-  }
-
-  /* Responsive writing list */
   .post-list-simple li {
     flex-direction: column;
     gap: 4px;
@@ -456,35 +443,11 @@ input, textarea, select {
   }
 
   .post-list-simple .post-date {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     min-width: auto;
   }
 
-  .post-list-simple a {
-    font-size: 1.05rem;
-  }
-
-  /* Responsive post content */
   .post-hero h1 {
-    font-size: 1.75rem;
-  }
-
-  .post-content {
-    font-size: 1rem;
-  }
-
-  .back-link {
-    margin-top: 32px;
-  }
-
-  /* Better touch targets */
-  a {
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .nav-link {
-    padding: 12px 10px;
+    font-size: 1.5rem;
   }
 }
