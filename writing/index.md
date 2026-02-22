@@ -4,22 +4,15 @@ title: Writing
 description: Essays, notes, and links.
 ---
 
-<section class="writing-index">
-  <header class="writing-header">
-    <h1>{{ page.title }}</h1>
-    <p class="writing-intro">
-      A small index of essays, notes, and links—listed chronologically.
-    </p>
-  </header>
+<div class="writing-simple">
+  <h1>Writing</h1>
 
-  <ul class="writing-list">
+  <ul class="post-list-simple">
+    {% for post in site.posts %}
     <li>
-      <span class="writing-date">2025-12-13</span>
-      <a href="#">Example post title</a>
+      <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
     </li>
-    <li>
-      <span class="writing-date">2025-11-02</span>
-      <a href="#">Another post title</a>
-    </li>
+    {% endfor %}
   </ul>
-</section>
+</div>
