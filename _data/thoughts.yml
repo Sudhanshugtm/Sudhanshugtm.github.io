@@ -2,6 +2,11 @@
 # Add new entries at the top (newest first)
 
 - date: "2026-02-23"
+  file: "thought-003.mp3"
+  caption: "Testing the voice pipeline"
+  duration: "0:05"
+
+- date: "2026-02-23"
   file: "thought-002.mp3"
   caption: "Hey, can you save this note for me now?"
   duration: "0:04"
