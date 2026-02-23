@@ -2,6 +2,12 @@
 # Add new entries at the top (newest first)
 
 - date: "2026-02-23"
+  file: "thought-002.mp3"
+  caption: "AI agents in tmux"
+  duration: "1:47"
+  transcript: "For the last couple of days, I've been doing an experiment — using my AI agents inside tmux. So tmux is basically this terminal multiplexer which splits a given terminal window into different panes. It's really amazing to see how you can leverage the true power of these different AI agents. You can literally launch an individual AI agent in one of those panes and work on a single problem but different parts of it. So let's say one agent takes care of thinking about the UX part, another one thinks about the UI part, and another one can think about something else in the product development pipeline. That's one of the ways — there are so many ways you can do it. As just a UX designer and UI designer, I can also do a git worktree and assign each of these different agents to an individual worktree. Then ask them to produce different UI solutions for the same problem, and share the results with me. I feel like this is a truly powerful way of using different AI agents working on the same problem."
+
+- date: "2026-02-23"
   file: "thought-001.mp3"
   caption: "Why we're drawn to LLMs"
   duration: "1:42"
