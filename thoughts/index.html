@@ -18,15 +18,32 @@ permalink: /thoughts/
       </div>
       {% if thought.caption %}<p class="thought-caption">{{ thought.caption }}</p>{% endif %}
       <div class="audio-player" data-src="/audio/{{ thought.file }}">
-        <button class="play-btn" aria-label="Play">
-          <svg class="icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-          <svg class="icon-pause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>
-        </button>
-        <div class="progress-bar">
-          <div class="progress-fill"></div>
+        <div class="player-main">
+          <button class="skip-btn skip-back" aria-label="Back 15 seconds">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/><text x="12" y="16" fill="currentColor" stroke="none" font-size="8" text-anchor="middle" font-weight="600">15</text></svg>
+          </button>
+          <button class="play-btn" aria-label="Play">
+            <svg class="icon-play" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            <svg class="icon-pause" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>
+          </button>
+          <button class="skip-btn skip-forward" aria-label="Forward 15 seconds">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/><text x="12" y="16" fill="currentColor" stroke="none" font-size="8" text-anchor="middle" font-weight="600">15</text></svg>
+          </button>
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <span class="time-display">0:00</span>
         </div>
-        <span class="time-display">0:00</span>
+        <div class="player-controls">
+          <button class="speed-btn" aria-label="Playback speed">1x</button>
+          {% if thought.transcript %}<button class="transcript-btn" aria-label="Show transcript">Transcript</button>{% endif %}
+        </div>
       </div>
+      {% if thought.transcript %}
+      <div class="thought-transcript" style="display:none">
+        <p>{{ thought.transcript }}</p>
+      </div>
+      {% endif %}
     </article>
     {% endfor %}
   </div>
@@ -37,6 +54,8 @@ permalink: /thoughts/
 </div>
 
 <script>
+const SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2];
+
 document.querySelectorAll('.audio-player').forEach(player => {
   const src = player.dataset.src;
   const playBtn = player.querySelector('.play-btn');
@@ -45,9 +64,16 @@ document.querySelectorAll('.audio-player').forEach(player => {
   const progressBar = player.querySelector('.progress-bar');
   const progressFill = player.querySelector('.progress-fill');
   const timeDisplay = player.querySelector('.time-display');
+  const speedBtn = player.querySelector('.speed-btn');
+  const transcriptBtn = player.querySelector('.transcript-btn');
+  const skipBack = player.querySelector('.skip-back');
+  const skipForward = player.querySelector('.skip-forward');
+  const entry = player.closest('.thought-entry');
+  const transcriptEl = entry ? entry.querySelector('.thought-transcript') : null;
   let audio = null;
   let rafId = null;
   let totalDuration = 0;
+  let speedIndex = 2; // 1x
 
   function formatTime(s) {
     const m = Math.floor(s / 60);
@@ -74,11 +100,11 @@ document.querySelectorAll('.audio-player').forEach(player => {
       iconPlay.style.display = '';
       iconPause.style.display = 'none';
       progressFill.style.width = '0%';
+      audio.currentTime = 0;
       updateTimeDisplay();
     });
   }
 
-  // Preload metadata immediately so duration shows before playing
   initAudio();
 
   function tick() {
@@ -94,11 +120,10 @@ document.querySelectorAll('.audio-player').forEach(player => {
     if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
   }
 
+  // Play / Pause
   playBtn.addEventListener('click', () => {
     initAudio();
-
     if (audio.paused) {
-      // Pause all other players
       document.querySelectorAll('.audio-player').forEach(p => {
         if (p === player) return;
         const btn = p.querySelector('.play-btn');
@@ -121,10 +146,10 @@ document.querySelectorAll('.audio-player').forEach(player => {
     }
   });
 
-  // Store references for cross-player pausing
   playBtn._stopTick = stopTick;
   Object.defineProperty(playBtn, '_audio', { get: () => audio, configurable: true });
 
+  // Progress bar seek
   progressBar.addEventListener('click', (e) => {
     if (audio && audio.duration) {
       const rect = progressBar.getBoundingClientRect();
@@ -134,5 +159,38 @@ document.querySelectorAll('.audio-player').forEach(player => {
       updateTimeDisplay();
     }
   });
+
+  // Skip back/forward 15s
+  skipBack.addEventListener('click', () => {
+    initAudio();
+    audio.currentTime = Math.max(0, audio.currentTime - 15);
+    updateTimeDisplay();
+    progressFill.style.width = ((audio.currentTime / audio.duration) * 100) + '%';
+  });
+
+  skipForward.addEventListener('click', () => {
+    initAudio();
+    audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 15);
+    updateTimeDisplay();
+    progressFill.style.width = ((audio.currentTime / audio.duration) * 100) + '%';
+  });
+
+  // Speed control
+  speedBtn.addEventListener('click', () => {
+    speedIndex = (speedIndex + 1) % SPEEDS.length;
+    const speed = SPEEDS[speedIndex];
+    if (audio) audio.playbackRate = speed;
+    speedBtn.textContent = speed === 1 ? '1x' : speed + 'x';
+    speedBtn.classList.toggle('speed-active', speed !== 1);
+  });
+
+  // Transcript toggle
+  if (transcriptBtn && transcriptEl) {
+    transcriptBtn.addEventListener('click', () => {
+      const visible = transcriptEl.style.display !== 'none';
+      transcriptEl.style.display = visible ? 'none' : 'block';
+      transcriptBtn.classList.toggle('transcript-active', !visible);
+    });
+  }
 });
 </script>
