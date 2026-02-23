@@ -46,6 +46,7 @@ document.querySelectorAll('.audio-player').forEach(player => {
   const progressFill = player.querySelector('.progress-fill');
   const timeDisplay = player.querySelector('.time-display');
   let audio = null;
+  let rafId = null;
 
   function formatTime(s) {
     const m = Math.floor(s / 60);
@@ -53,15 +54,24 @@ document.querySelectorAll('.audio-player').forEach(player => {
     return m + ':' + (sec < 10 ? '0' : '') + sec;
   }
 
+  function tick() {
+    if (audio && !audio.paused && audio.duration) {
+      const pct = (audio.currentTime / audio.duration) * 100;
+      progressFill.style.width = pct + '%';
+      timeDisplay.textContent = formatTime(audio.currentTime);
+      rafId = requestAnimationFrame(tick);
+    }
+  }
+
+  function stopTick() {
+    if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+  }
+
   playBtn.addEventListener('click', () => {
     if (!audio) {
       audio = new Audio(src);
-      audio.addEventListener('timeupdate', () => {
-        const pct = (audio.currentTime / audio.duration) * 100;
-        progressFill.style.width = pct + '%';
-        timeDisplay.textContent = formatTime(audio.currentTime);
-      });
       audio.addEventListener('ended', () => {
+        stopTick();
         iconPlay.style.display = '';
         iconPause.style.display = 'none';
         progressFill.style.width = '0%';
@@ -71,26 +81,44 @@ document.querySelectorAll('.audio-player').forEach(player => {
 
     if (audio.paused) {
       // Pause all other players
-      document.querySelectorAll('.audio-player audio').forEach(a => { if (a !== audio) a.pause(); });
       document.querySelectorAll('.audio-player').forEach(p => {
-        p.querySelector('.icon-play').style.display = '';
-        p.querySelector('.icon-pause').style.display = 'none';
+        if (p === player) return;
+        const btn = p.querySelector('.play-btn');
+        if (btn._audio && !btn._audio.paused) {
+          btn._audio.pause();
+          btn._stopTick && btn._stopTick();
+          p.querySelector('.icon-play').style.display = '';
+          p.querySelector('.icon-pause').style.display = 'none';
+        }
       });
       audio.play();
       iconPlay.style.display = 'none';
       iconPause.style.display = '';
+      rafId = requestAnimationFrame(tick);
     } else {
       audio.pause();
+      stopTick();
       iconPlay.style.display = '';
       iconPause.style.display = 'none';
     }
   });
 
+  // Store references for cross-player pausing
+  playBtn._audio = null;
+  playBtn._stopTick = stopTick;
+
+  // Update reference once audio is created
+  const origClick = playBtn.onclick;
+  new MutationObserver(() => { playBtn._audio = audio; }).disconnect();
+  Object.defineProperty(playBtn, '_audio', { get: () => audio, configurable: true });
+
   progressBar.addEventListener('click', (e) => {
     if (audio && audio.duration) {
       const rect = progressBar.getBoundingClientRect();
-      const pct = (e.clientX - rect.left) / rect.width;
+      const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
       audio.currentTime = pct * audio.duration;
+      progressFill.style.width = (pct * 100) + '%';
+      timeDisplay.textContent = formatTime(audio.currentTime);
     }
   });
 });
