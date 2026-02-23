@@ -47,6 +47,7 @@ document.querySelectorAll('.audio-player').forEach(player => {
   const timeDisplay = player.querySelector('.time-display');
   let audio = null;
   let rafId = null;
+  let totalDuration = 0;
 
   function formatTime(s) {
     const m = Math.floor(s / 60);
@@ -54,11 +55,37 @@ document.querySelectorAll('.audio-player').forEach(player => {
     return m + ':' + (sec < 10 ? '0' : '') + sec;
   }
 
+  function updateTimeDisplay() {
+    const cur = audio ? formatTime(audio.currentTime) : '0:00';
+    const tot = totalDuration ? formatTime(totalDuration) : '0:00';
+    timeDisplay.textContent = cur + ' / ' + tot;
+  }
+
+  function initAudio() {
+    if (audio) return;
+    audio = new Audio(src);
+    audio.preload = 'metadata';
+    audio.addEventListener('loadedmetadata', () => {
+      totalDuration = audio.duration;
+      updateTimeDisplay();
+    });
+    audio.addEventListener('ended', () => {
+      stopTick();
+      iconPlay.style.display = '';
+      iconPause.style.display = 'none';
+      progressFill.style.width = '0%';
+      updateTimeDisplay();
+    });
+  }
+
+  // Preload metadata immediately so duration shows before playing
+  initAudio();
+
   function tick() {
     if (audio && !audio.paused && audio.duration) {
       const pct = (audio.currentTime / audio.duration) * 100;
       progressFill.style.width = pct + '%';
-      timeDisplay.textContent = formatTime(audio.currentTime);
+      updateTimeDisplay();
       rafId = requestAnimationFrame(tick);
     }
   }
@@ -68,16 +95,7 @@ document.querySelectorAll('.audio-player').forEach(player => {
   }
 
   playBtn.addEventListener('click', () => {
-    if (!audio) {
-      audio = new Audio(src);
-      audio.addEventListener('ended', () => {
-        stopTick();
-        iconPlay.style.display = '';
-        iconPause.style.display = 'none';
-        progressFill.style.width = '0%';
-        timeDisplay.textContent = '0:00';
-      });
-    }
+    initAudio();
 
     if (audio.paused) {
       // Pause all other players
@@ -104,12 +122,7 @@ document.querySelectorAll('.audio-player').forEach(player => {
   });
 
   // Store references for cross-player pausing
-  playBtn._audio = null;
   playBtn._stopTick = stopTick;
-
-  // Update reference once audio is created
-  const origClick = playBtn.onclick;
-  new MutationObserver(() => { playBtn._audio = audio; }).disconnect();
   Object.defineProperty(playBtn, '_audio', { get: () => audio, configurable: true });
 
   progressBar.addEventListener('click', (e) => {
@@ -118,7 +131,7 @@ document.querySelectorAll('.audio-player').forEach(player => {
       const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
       audio.currentTime = pct * audio.duration;
       progressFill.style.width = (pct * 100) + '%';
-      timeDisplay.textContent = formatTime(audio.currentTime);
+      updateTimeDisplay();
     }
   });
 });

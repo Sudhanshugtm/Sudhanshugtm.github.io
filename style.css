@@ -480,27 +480,28 @@ tbody td {
 
 .progress-bar {
   flex: 1;
-  height: 4px;
-  background: var(--border);
-  border-radius: 2px;
+  height: 6px;
+  background: #ddd;
+  border-radius: 3px;
   cursor: pointer;
   position: relative;
 }
 
 .progress-fill {
   height: 100%;
-  background: var(--text);
-  border-radius: 2px;
+  background: #333;
+  border-radius: 3px;
   width: 0%;
   will-change: width;
 }
 
 .time-display {
   font-size: 0.8rem;
-  color: var(--faint);
+  color: var(--muted);
   font-variant-numeric: tabular-nums;
-  min-width: 36px;
+  min-width: 72px;
   text-align: right;
+  white-space: nowrap;
 }
 
 .thoughts-empty {
